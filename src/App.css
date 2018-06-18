@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+  font-weight: bold;
+  width: 80vw;
+}
+
+#root {
+  margin-top: 0;
+}
+
+.Blippo {
+  font-family: 'Blippo', fantasy;
+}
+
+.hidden {
+  display: none;
+}
+
+* {
+  list-style-type: none;
+  margin-top: 3vh;
+}
+
+body {
+  text-decoration: none;
+  list-style-type: none;
+  height: 100vh;
+  background-image: url(./lotrpic.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: gray;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.Segment > p {
+  border-radius: 25px;
+  text-align: center;
+  overflow: scroll;
+}
+
+#Footer {
+  position: fixed;
+  bottom: 0;
+  width: 80%;
+}
+
+.Segment {
+  height: 50vh;
+  overflow: scroll;
+}
+
+.ui.segment.visibility {
+  height: 50vh;
+  overflow: scroll;
+}
