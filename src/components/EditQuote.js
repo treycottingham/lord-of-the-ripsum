@@ -3,7 +3,7 @@ import { Button, Form, Dropdown } from 'semantic-ui-react'
 
 const apiURL = 'https://lotripsum.herokuapp.com/books'
 
-class AddQuote extends React.Component {
+export default class EditQuote extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,7 +20,7 @@ class AddQuote extends React.Component {
     .then(response => response.json())
       .then(quotes => {
         this.setState({
-          quotesArr: quotes
+          quotesArr: quotes.quote
         })
         console.log('insidefetch', this.state.quotesArr)
       })
@@ -33,5 +33,3 @@ class AddQuote extends React.Component {
     )
   }
 }
-
-export default AddQuote

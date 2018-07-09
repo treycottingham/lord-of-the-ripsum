@@ -90,51 +90,22 @@ class Generator extends React.Component {
         <Container>
           <Input onChange={this.handleChange} name="quotes" value={this.state.quotes}></Input>
           <Button className="Button" color="blue" onClick={this.printBookQuotes}>Book</Button>
-          <Button className="Button" color="blue" onClick={this.printMovieQuotes}>Movie</Button>
+          <Button className="Button" color="green" onClick={this.printMovieQuotes}>Movie</Button>
           {this.state.isHidden ? <Segment className="Segment"> <p className="Blippo">{this.state.bookQuotesArr}{this.state.movieQuotesArr}</p></Segment> : null}
         </Container>
-        <Container>
+        {/* <Container>
           <Button className="Button" color="olive">
-          {/* ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"] */}
+          ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"]
             <Link to={`/add`}>Add Book Quote</Link>
           </Button>
           <Button className="Button" color="brown">
             <Link to={`/edit`}>Add Movie Quote</Link>
           </Button>
         </Container>
-          <Button className="Button" color="red">"Boromir" a Quote</Button>
+          <Button className="Button" color="red">"Boromir" a Quote</Button> */}
       </main>
     )
   }
 }
 
 export default Generator
-
-// fetchCompany = () => {
-  
-  //   const apiURL = 'https://mo-jobs-database.herokuapp.com/company';
-  
-  //   return fetch(apiURL)
-  //     .then(response => response.json())
-  //     .then(company => {
-    //       this.setState({
-      //         company,
-      //         isCompanyLoaded: true
-      //       })
-      //       console.log('insidefetch', this.state.company)
-      //     })
-      //     .catch((err) => console.log('err', err))
-      // }
-                        
-      // componentDidMount() {
-                        //   // this.fetchMovies()
-                        //   // this.fetchBooks()
-                        //   fetch(booksURL)
-                        //     .then(response => response.json())
-                        //     .then(data => {
-                        //       return this.setState({
-                        //         phrases: data,
-                        //         isLoaded: true
-                        //       })
-                        //     })
-                        // }

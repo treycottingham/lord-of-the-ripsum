@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Generator from './components/Generator'
 import AddQuote from './components/AddQuote'
 import EditQuote from './components/EditQuote'
+import Landing from './components/Landing'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class App extends React.Component {
         <div className="App">
           <Header />
             <Switch>
-              <Route exact path="/" component={Generator}/>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/generator" component={Generator}/>
               <Route exact path="/add" component={AddQuote}/>
               <Route exact path="/edit" component={EditQuote}/>
             </Switch>
