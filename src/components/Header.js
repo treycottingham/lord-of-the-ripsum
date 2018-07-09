@@ -4,7 +4,7 @@ class Header extends React.Component {
   render() {
     return (
       <header>
-        <h1 className="Blippo">Lord of the Ripsum</h1>
+        <h1 id="Header" className="Blippo">Lord of the Ripsum</h1>
         <p className="Blippo">Middle Earth's premier random text generator.</p>
       </header>
     )

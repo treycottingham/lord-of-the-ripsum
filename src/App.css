@@ -1,62 +1,53 @@
+body {
+  background-image: url(./lotrpic.jpg);
+  background-color: gray;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
 .App {
   text-align: center;
   font-weight: bold;
-  width: 80vw;
-}
-
-#root {
-  margin-top: 0;
+  width: 100vw;
 }
 
 .Blippo {
   font-family: 'Blippo', fantasy;
 }
 
-.hidden {
-  display: none;
-}
-
-* {
-  list-style-type: none;
-  margin-top: 3vh;
-}
-
-body {
-  text-decoration: none;
-  list-style-type: none;
-  height: 100vh;
-  background-image: url(./lotrpic.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: gray;
-  background-size: 100% 100%;
-  display: flex;
-  justify-content: center;
-}
-
-main {
-  width: 80%;
-  margin-left: 10%;
-}
-
-.Segment > p {
-  border-radius: 25px;
-  text-align: center;
-  overflow: scroll;
+#Header {
+  width: 100vw;
+  padding-top: 1vh;
+  padding-bottom: .5vh;
+  color: white;
+  background-image: url("./lotr_background1.jpg");
+  background-size: cover;
 }
 
 #Footer {
   position: fixed;
   bottom: 0;
-  width: 80%;
+  width: 100%;
 }
 
-.Segment {
-  height: 50vh;
+.ui.segment.Segment {
+  height: 30vh;
+  width: 90%;
   overflow: scroll;
+  margin-left: 3%;
 }
 
-.ui.segment.visibility {
-  height: 50vh;
-  overflow: scroll;
+.ui.form input:not([type]) {
+  width: 90%;
+}
+
+Button {
+  color:black;
+}
+
+a {
+  color:black;
+  text-decoration:none;
 }

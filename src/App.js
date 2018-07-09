@@ -1,35 +1,32 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import './App.css'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Main from './components/Main'
-
-const apiURL = './quotes.json'
+import Generator from './components/Generator'
+import AddQuote from './components/AddQuote'
+import EditQuote from './components/EditQuote'
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state = {
-      phrases: []
-    }
-  }
-
-  componentDidMount() {
-    fetch(apiURL)
-      .then(response => response.json())
-      .then(data => {
-        return this.setState({phrases:data})
-      })
   }
 
   render() {
     return (
+      <Router>
         <div className="App">
           <Header />
-          <Main phrases={this.state.phrases}/>
+            <Switch>
+              <Route exact path="/" component={Generator}/>
+              <Route exact path="/add" component={AddQuote}/>
+              <Route exact path="/edit" component={EditQuote}/>
+            </Switch>
           <Footer />
         </div>
+      </Router>
     )
   }
 }
