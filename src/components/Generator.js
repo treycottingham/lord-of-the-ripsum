@@ -5,12 +5,13 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 const booksURL = 'https://lotripsum.herokuapp.com/books'
 const moviesURL = 'https://lotripsum.herokuapp.com/movies'
 
-class Generator extends React.Component {
+export default class Generator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isHidden: false,
-      isLoaded: false,
+      booksAreLoaded: false,
+      moviesAreLoaded: false,
       quotes: 0,
       books: [],
       movies: [],
@@ -30,7 +31,7 @@ class Generator extends React.Component {
       .then(books => {
         this.setState({
           books: books,
-          isLoaded: true
+          booksAreLoaded: true
         })
       })
       .catch((err) => console.log('err', err))
@@ -42,7 +43,7 @@ class Generator extends React.Component {
       .then(movies => {
         this.setState({
           movies: movies,
-          isLoaded: true
+          moviesAreLoaded: true
         })
       })
       .catch((err) => console.log('err', err))
@@ -83,7 +84,7 @@ class Generator extends React.Component {
   }
   
   render () {
-    const isLoaded = this.state.isLoaded
+    // const isLoaded = this.state.isLoaded
     return (
       <main>
         <h2 className="Blippo">How many quotes do you need?</h2>
@@ -93,19 +94,17 @@ class Generator extends React.Component {
           <Button className="Button" color="green" onClick={this.printMovieQuotes}>Movie</Button>
           {this.state.isHidden ? <Segment className="Segment"> <p className="Blippo">{this.state.bookQuotesArr}{this.state.movieQuotesArr}</p></Segment> : null}
         </Container>
-        {/* <Container>
+        <Container>
           <Button className="Button" color="olive">
-          ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"]
-            <Link to={`/add`}>Add Book Quote</Link>
+          {/* ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"] */}
+            <Link to={`/manage`}>Manage Quotes</Link>
           </Button>
-          <Button className="Button" color="brown">
+          {/* <Button className="Button" color="brown">
             <Link to={`/edit`}>Add Movie Quote</Link>
-          </Button>
+          </Button> */}
         </Container>
-          <Button className="Button" color="red">"Boromir" a Quote</Button> */}
+          {/* <Button className="Button" color="red">"Boromir" a Quote</Button> */}
       </main>
     )
   }
 }
-
-export default Generator
