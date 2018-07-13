@@ -109,7 +109,6 @@ export default class ManageQuotes extends React.Component {
   }
   addSubmit = (event) => {
     event.preventDefault()
-    console.log("ADDSUBMIT FIRING")
     this.post(this.state)
   }
   post = (data) => {
@@ -117,7 +116,6 @@ export default class ManageQuotes extends React.Component {
     let content = {
       quote: data.name,
     }
-    console.log('DATA', data)
   fetch(url, {
       method: 'POST',
       body: JSON.stringify(content),
@@ -127,9 +125,6 @@ export default class ManageQuotes extends React.Component {
       }
     })
     .then(res => res.json())
-    // .then(res => {
-    //   this.setState({quote: res.quote})
-    // })
     .catch(function (error) {
       console.log('error')
     })

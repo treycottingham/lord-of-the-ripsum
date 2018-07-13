@@ -59,12 +59,11 @@ export default class Generator extends React.Component {
   }
   printMovieQuotes = (event) => {
     var movieQuotes = []
-    // console.log(this.state.movies.quote)
     var quoteMap = this.state.movies.quote.map(movieQuote => movieQuote.quote)
     for (let i = 0; i < this.state.quotes; i++) {
-    let quoteGen = this.state.movies.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
-    movieQuotes.push(quoteGen)
-    }
+      let quoteGen = this.state.movies.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
+      movieQuotes.push(quoteGen)
+      }
     this.setState({
       isHidden: !this.state.isHidden,
       movieQuotesArr: movieQuotes
@@ -88,7 +87,6 @@ export default class Generator extends React.Component {
         </Container>
         <Container>
           <Button className="Button" color="olive">
-          {/* ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"] */}
             <Link to={`/manage`}>Manage Quotes</Link>
           </Button>
         </Container>

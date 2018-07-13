@@ -10,7 +10,6 @@ export default class Landing extends React.Component {
           <h1>Welcome to Lord of the Ripsum</h1>
           <p>This site was created so that developers can fill text areas with their favorite Lord of the Rings quotes.</p>
           <Button className="Button" color="orange">
-          {/* ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"] */}
             <Link to={`/generator`}>Enter</Link>
           </Button>
         </Container>
