@@ -18,32 +18,3 @@ export default class Landing extends React.Component {
     )
   }
 }
-
-// fetchCompany = () => {
-  
-  //   const apiURL = 'https://mo-jobs-database.herokuapp.com/company';
-  
-  //   return fetch(apiURL)
-  //     .then(response => response.json())
-  //     .then(company => {
-    //       this.setState({
-      //         company,
-      //         isCompanyLoaded: true
-      //       })
-      //       console.log('insidefetch', this.state.company)
-      //     })
-      //     .catch((err) => console.log('err', err))
-      // }
-                        
-      // componentDidMount() {
-                        //   // this.fetchMovies()
-                        //   // this.fetchBooks()
-                        //   fetch(booksURL)
-                        //     .then(response => response.json())
-                        //     .then(data => {
-                        //       return this.setState({
-                        //         phrases: data,
-                        //         isLoaded: true
-                        //       })
-                        //     })
-                        // }

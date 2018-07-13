@@ -7,25 +7,18 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Generator from './components/Generator'
 import ManageQuotes from './components/ManageQuotes'
-// import Landing from './components/Landing'
-
-// import EditQuote from './components/EditQuote'
+import Landing from './components/Landing'
 
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-
   render() {
     return (
       <Router>
         <div className="App">
           <Header />
             <Switch>
-              {/* <Route exact path="/" component={Landing} /> */}
-              <Route exact path="/manage" component={ManageQuotes}/>
+              <Route exact path="/" component={Landing} />
               <Route exact path="/generator" component={Generator}/>
-              {/* <Route exact path="/edit" component={EditQuote}/> */}
+              <Route exact path="/manage" component={ManageQuotes}/>
             </Switch>
           <Footer />
         </div>

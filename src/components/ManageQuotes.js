@@ -8,7 +8,6 @@ export default class ManageQuotes extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // quote: '',
       isShown: false,
       booksAreLoaded: false,
       moviesAreLoaded: false,
@@ -53,7 +52,6 @@ export default class ManageQuotes extends React.Component {
       id: event.target.id,
       quote: this.state.name
     }
-    console.log("EVENTTARGETID",event.target.id,'CONTENT',content)
     fetch(url, {
         method: 'put',
         headers: {
@@ -103,19 +101,12 @@ export default class ManageQuotes extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state)
   }
   showAdd = () => {
     this.setState({
       addShown: true
     })
   }
-  // handleAddChange = (event) => {
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   })
-  //   console.log('handleaddchange', this.state.quote, 'EVENTTARGETVALUE', event.target.value)
-  // }
   addSubmit = (event) => {
     event.preventDefault()
     console.log("ADDSUBMIT FIRING")
@@ -185,17 +176,3 @@ export default class ManageQuotes extends React.Component {
     )
   }
 }
-    
-    
-// <Form>
-//   <Form.Field>
-//     <Form.Field>
-//       <h2 className="Blippo">New Quote</h2>
-//       {!this.state.isShown ? <input name="quote" value={this.state.quote.quote} onChange={this.handleChange} placeholder='Insert your quote here' /> : null}
-//     </Form.Field>
-//   </Form.Field>
-//   <Button onClick={this.showResponse} id="submit-button" type="submit" color="green">Add</Button>
-//   {this.state.isShown ? <Segment className="Segment"> <p className="Blippo">{this.state.quote.quote}</p></Segment> : null}
-//   {this.state.isShown ? <Button onClick={this.editResponse && this.handleSubmit} id="edit-button" type="submit" color="green">Edit</Button> : null}
-//   {this.state.isShown ? <Button onClick={this.deleteResponse} id="delete-button" color="red">Delete</Button> : null}
-// </Form>

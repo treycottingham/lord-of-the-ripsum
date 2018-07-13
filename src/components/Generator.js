@@ -19,12 +19,10 @@ export default class Generator extends React.Component {
       bookQuotesArr: "",
     }
   }
-  
   componentDidMount() {
     this.fetchBooks()
     this.fetchMovies()
   }
-
   fetchBooks = () => {
     return fetch(booksURL)
       .then(response => response.json())
@@ -36,7 +34,6 @@ export default class Generator extends React.Component {
       })
       .catch((err) => console.log('err', err))
   }
-
   fetchMovies = () => {
     return fetch(moviesURL)
       .then(response => response.json())
@@ -48,43 +45,38 @@ export default class Generator extends React.Component {
       })
       .catch((err) => console.log('err', err))
     }
-    
-    printBookQuotes = (event) => {
-      var bookQuotes = []
-      var quoteMap = this.state.books.quote.map(bookQuote => bookQuote.quote)
-      for(let i = 0; i < this.state.quotes; i++){
-        let quoteGen = this.state.books.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
-        bookQuotes.push(quoteGen)
-      }
-      this.setState({
-        isHidden: !this.state.isHidden,
-        bookQuotesArr: bookQuotes
-      })
+  printBookQuotes = (event) => {
+    var bookQuotes = []
+    var quoteMap = this.state.books.quote.map(bookQuote => bookQuote.quote)
+    for(let i = 0; i < this.state.quotes; i++){
+      let quoteGen = this.state.books.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
+      bookQuotes.push(quoteGen)
     }
-    
-    printMovieQuotes = (event) => {
-      var movieQuotes = []
-      // console.log(this.state.movies.quote)
-      var quoteMap = this.state.movies.quote.map(movieQuote => movieQuote.quote)
-      for (let i = 0; i < this.state.quotes; i++) {
-      let quoteGen = this.state.movies.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
-      movieQuotes.push(quoteGen)
+    this.setState({
+      isHidden: !this.state.isHidden,
+      bookQuotesArr: bookQuotes
+    })
+  }
+  printMovieQuotes = (event) => {
+    var movieQuotes = []
+    // console.log(this.state.movies.quote)
+    var quoteMap = this.state.movies.quote.map(movieQuote => movieQuote.quote)
+    for (let i = 0; i < this.state.quotes; i++) {
+    let quoteGen = this.state.movies.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
+    movieQuotes.push(quoteGen)
     }
     this.setState({
       isHidden: !this.state.isHidden,
       movieQuotesArr: movieQuotes
     })
   }
-  
   handleChange = (event) => {
     this.setState({
       isHidden: false,
       [event.target.name] : event.target.value
     })
   }
-  
   render () {
-    // const isLoaded = this.state.isLoaded
     return (
       <main>
         <h2 className="Blippo">How many quotes do you need?</h2>
@@ -99,11 +91,7 @@ export default class Generator extends React.Component {
           {/* ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown", "grey", "black", "facebook", "google plus", "instagram", "linkedin", "twitter", "vk", "youtube"] */}
             <Link to={`/manage`}>Manage Quotes</Link>
           </Button>
-          {/* <Button className="Button" color="brown">
-            <Link to={`/edit`}>Add Movie Quote</Link>
-          </Button> */}
         </Container>
-          {/* <Button className="Button" color="red">"Boromir" a Quote</Button> */}
       </main>
     )
   }
