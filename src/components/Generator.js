@@ -30,16 +30,20 @@ export default class Generator extends React.Component {
       .catch((err) => console.log('err', err))
   }
   printBookQuotes = (event) => {
-    var bookQuotes = []
-    var quoteMap = this.state.books.quote.map(bookQuote => bookQuote.quote)
-    for(let i = 0; i < this.state.quotes; i++){
-      let quoteGen = this.state.books.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
-      bookQuotes.push(quoteGen)
+    if(this.state.booksAreLoaded === false){
+      this.fetchBooks()
+    } else {
+      var bookQuotes = []
+      var quoteMap = this.state.books.quote.map(bookQuote => bookQuote.quote)
+      for(let i = 0; i < this.state.quotes; i++){
+        let quoteGen = this.state.books.quote ? quoteMap[(Math.floor(Math.random() * 7))] : "error"
+        bookQuotes.push(quoteGen)
+      }
+      this.setState({
+        isHidden: !this.state.isHidden,
+        bookQuotesArr: bookQuotes
+      })
     }
-    this.setState({
-      isHidden: !this.state.isHidden,
-      bookQuotesArr: bookQuotes
-    })
   }
   handleChange = (event) => {
     this.setState({
