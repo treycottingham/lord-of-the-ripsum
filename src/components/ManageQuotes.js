@@ -1,8 +1,8 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { Button, Form } from 'semantic-ui-react'
 
 const booksURL = 'https://lotripsum.herokuapp.com/books'
-const moviesURL = 'https://lotripsum.herokuapp.com/movies'
 
 export default class ManageQuotes extends React.Component {
   constructor(props) {
@@ -10,16 +10,13 @@ export default class ManageQuotes extends React.Component {
     this.state = {
       isShown: false,
       booksAreLoaded: false,
-      moviesAreLoaded: false,
       books: [],
-      movies: [],
       editShown: false,
       addShown: false, 
     }
   }
   componentDidMount(){
     this.fetchBooks()
-    this.fetchMovies()
   }
   fetchBooks = () => {
     return fetch(booksURL)
@@ -32,20 +29,6 @@ export default class ManageQuotes extends React.Component {
       })
       .catch((err) => console.log('err', err))
   }
-  fetchMovies = () => {
-    return fetch(moviesURL)
-      .then(response => response.json())
-      .then(movies => {
-        this.setState({
-          movies: movies,
-          moviesAreLoaded: true
-        })
-      })
-      .catch((err) => console.log('err', err))
-  }
-  showResponse = (event) => {
-    this.setState({isShown: true})
-  }  
   editResponse = (event) => {
     const url = `https://lotripsum.herokuapp.com/books/${event.target.id}`
     let content = {
@@ -53,30 +36,85 @@ export default class ManageQuotes extends React.Component {
       quote: this.state.name
     }
     fetch(url, {
-        method: 'put',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(content)
-      })
-      .then(res => res.json())
-      .then(books => {
-        this.setState({
-          books
-        })
-      })
-      .catch(function (error) {
-        console.log('error')
-      })
+      method: 'put',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(content)
+    })
+    .then(res => window.location.reload())
+    // .then(books => {
+    //   this.setState({
+    //     books
+    //   })
+    // })
+    .catch(function (error) {
+      console.log('error')
+    })
   }
-  revealEdit = () => {
+  
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.editResponse(event)
+  }
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+      name: event.target.value
+    })
+  }
+  showAdd = () => {
+    this.setState({
+      addShown: true
+    })
+  }
+  addSubmit = (event) => {
+    event.preventDefault()
+    console.log('addsubmit event target name', event.target.name, this.state, 'state')
+    this.post(this.state)
+  }
+  post = (data) => {
+    const url = `https://lotripsum.herokuapp.com/books`
+    console.log(data.name, 'data.name in post')
+    let content = {
+      quote: data.name,
+    }
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(content),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => window.location.reload())
+    .catch(function (error) {
+      console.log('error')
+    })
+  }
+  revealEdit = (event) => {
+    console.log(event.target.id)
+
     this.setState({
       editShown: true
     })
   }
+  generateForm = (event) => {
+    const form = 
+    <Form id={event.target.id} onSubmit={this.handleSubmit}>
+      <Form.Input name='name' value={this.state.name} onChange={this.handleChange} />
+      <Button>Submit</Button>
+    </Form>
+    
+    var mountElement = document.getElementById(`${event.target.id}`)
+    var boldElement = React.createElement('div', null, form);
+    
+    ReactDOM.render(boldElement, mountElement);
+  }
   deleteResponse = (event) => {
     const url = `https://lotripsum.herokuapp.com/books/${event.target.id}`
+    console.log('target id', event.target.id)
     fetch(url, {
         method: 'delete',
       })
@@ -87,80 +125,25 @@ export default class ManageQuotes extends React.Component {
         })
       })
       .catch(function (error) {
-        console.log('error')
+        console.log('error', error)
       })
-  }
-  handleSubmit = (event) => {
-    event.preventDefault()
-    this.editResponse(event)
-    // console.log(event.target.id)
-    // console.log("this.state.name", this.state.name)
-    // this.post(this.state)
-  }
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-  showAdd = () => {
-    this.setState({
-      addShown: true
-    })
-  }
-  addSubmit = (event) => {
-    event.preventDefault()
-    this.post(this.state)
-  }
-  post = (data) => {
-    const url = `https://lotripsum.herokuapp.com/books`
-    let content = {
-      quote: data.name,
-    }
-  fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(content),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .catch(function (error) {
-      console.log('error')
-    })
   }
   render() {
     const booksAreLoaded = this.state.booksAreLoaded
-    const moviesAreLoaded = this.state.moviesAreLoaded
     return(
       <div id="scroll-view">
-        {booksAreLoaded && this.state.books.quote.map((data, index) => {
+        {booksAreLoaded && this.state.books.quote.map((data) => {
           return(
-            <div>
-              <Button id={data.id} onClick={this.deleteResponse} color='red'>Boromir</Button>
-              <Button onClick={this.revealEdit} color='green'>Edit</Button>
-              {this.state.editShown && 
-                <Form id={data.id} onSubmit={this.handleSubmit}>
-                  <Form.Input id={data.id} name='name' value={this.state.name} onChange={this.handleChange} />
-                  <Button>Submit</Button>
-                </Form>}
-              <p>{data.quote}</p>
-            </div>
-          )
-        }
-        )}
-        {moviesAreLoaded && this.state.movies.quote.map((data, index) => {
-          return(
-            <div>
-              <Button id={data.id} onClick={this.deleteResponse} color='red'>Boromir</Button>
-              <Button onClick={this.editResponse} color='green'>Edit</Button>
-              <p>{data.quote}</p>
+            <div key={data.id} id={data.id} className="quotes-div">
+              <p className="quotes">{data.quote}</p>
+              <Button id={data.id} onClick={this.deleteResponse} color='red'>Delete</Button>
+              <Button id={data.id} onClick={this.generateForm} color='green'>Edit</Button>
             </div>
           )
         }
         )}
         {!this.state.addShown && 
-        <Button color='yellow' onClick={this.showAdd}>Add Quote</Button>}
+        <Button id="add-button" color='yellow' onClick={this.showAdd}>Add Quote</Button>}
         {this.state.addShown && 
           <Form onSubmit={this.addSubmit}>
             <Form.Input name="name" onChange={this.handleChange}></Form.Input>
@@ -171,3 +154,6 @@ export default class ManageQuotes extends React.Component {
     )
   }
 }
+
+
+//fetchBooks

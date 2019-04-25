@@ -51,3 +51,20 @@ a {
   color:black;
   text-decoration:none;
 }
+
+#scroll-view {
+  overflow: scroll;
+  height: 85vh;
+}
+
+.quotes {
+  margin-top: 1%;
+}
+
+#add-button {
+  margin-top: 2%;
+}
+
+.quotes-div {
+  margin-top: 1%;
+}
