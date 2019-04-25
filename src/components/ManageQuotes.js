@@ -44,11 +44,6 @@ export default class ManageQuotes extends React.Component {
         body: JSON.stringify(content)
     })
     .then(res => window.location.reload())
-    // .then(books => {
-    //   this.setState({
-    //     books
-    //   })
-    // })
     .catch(function (error) {
       console.log('error')
     })
@@ -132,6 +127,9 @@ export default class ManageQuotes extends React.Component {
     const booksAreLoaded = this.state.booksAreLoaded
     return(
       <div id="scroll-view">
+        <Button className="Button" color="orange">
+          <Link to={`/generator`}>Back</Link>
+        </Button>
         {booksAreLoaded && this.state.books.quote.map((data) => {
           return(
             <div key={data.id} id={data.id} className="quotes-div">

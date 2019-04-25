@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Input, Segment, Container } from 'semantic-ui-react'
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const booksURL = 'https://lotripsum.herokuapp.com/books'
 
@@ -10,17 +10,13 @@ export default class Generator extends React.Component {
     this.state = {
       isHidden: false,
       booksAreLoaded: false,
-      // moviesAreLoaded: false,
       quotes: 0,
       books: [],
-      // movies: [],
       bookQuotesArr: "",
-      // movieQuotesArr: "",
     }
   }
   componentDidMount() {
     this.fetchBooks()
-    // this.fetchMovies()
   }
   fetchBooks = () => {
     return fetch(booksURL)
@@ -33,17 +29,6 @@ export default class Generator extends React.Component {
       })
       .catch((err) => console.log('err', err))
   }
-  // fetchMovies = () => {
-  //   return fetch(moviesURL)
-  //     .then(response => response.json())
-  //     .then(movies => {
-  //       this.setState({
-  //         movies: movies,
-  //         moviesAreLoaded: true
-  //       })
-  //     })
-  //     .catch((err) => console.log('err', err))
-  //   }
   printBookQuotes = (event) => {
     var bookQuotes = []
     var quoteMap = this.state.books.quote.map(bookQuote => bookQuote.quote)
@@ -56,18 +41,6 @@ export default class Generator extends React.Component {
       bookQuotesArr: bookQuotes
     })
   }
-  // printMovieQuotes = (event) => {
-  //   var movieQuotes = []
-  //   var quoteMap = this.state.movies.quote.map(movieQuote => movieQuote.quote)
-  //   for (let i = 0; i < this.state.quotes; i++) {
-  //     let quoteGen = this.state.movies.quote ? quoteMap[(Math.floor(Math.random() * 23))] : "error"
-  //     movieQuotes.push(quoteGen)
-  //     }
-  //   this.setState({
-  //     isHidden: !this.state.isHidden,
-  //     movieQuotesArr: movieQuotes
-  //   })
-  // }
   handleChange = (event) => {
     this.setState({
       isHidden: false,
@@ -81,7 +54,6 @@ export default class Generator extends React.Component {
         <Container>
           <Input onChange={this.handleChange} name="quotes" value={this.state.quotes}></Input>
           <Button className="Button" color="blue" onClick={this.printBookQuotes}>For Frodo!!!</Button>
-          {/* <Button className="Button" color="green" onClick={this.printMovieQuotes}>Movie</Button> */}
           {this.state.isHidden ? <Segment className="Segment"> <p className="Blippo">{this.state.bookQuotesArr}{this.state.movieQuotesArr}</p></Segment> : null}
         </Container>
         <Container>
